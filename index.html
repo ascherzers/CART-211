@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Packs - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&family=Comic+Neue:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Brand and Search Bar -->
+    <header class="brand-bar">
+        <div class="brand-logo">
+            <h1>AJ Packs</h1>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
+            <button id="start-record-btn" class="voice-btn">Microphone</button>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <h2 class="fun-font">Pokémon Singles! Sealed Products + More!</h2>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products" id="featured-products">
+        <h2 style="font-size:5vw" , class="small-font">Popular Products</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- <div class="product fade-in">
+                <img src="images/pikachu.jpg" alt="Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo">
+                <h3>Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo</h3>
+                <p>$85.99</p>
+                <a href="product_detail.html?name=${encodeURIComponent('Pikachu VMAX Trainer Gallery')}&price=85.99">View
+                    Details</a>
+            </div>
+            <div class="product fade-in">
+                <img src="images/charizard.jpg" alt="Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows">
+                <h3>Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows</h3>
+                <p>$50.00</p>
+                <a href="product_detail.html?name=${encodeURIComponent('Charizard GX')}&price=50.00">View Details</a>
+            </div>
+            <div class="product fade-in">
+                <img src="images/stellarbox.jpg" alt="Stellar Crown Booster Box">
+                <h3>Stellar Crown Booster Box</h3>
+                <p>$159.99</p>
+                <a href="product_detail.html?name=${encodeURIComponent('Stellar Crown Booster Box')}&price=159.99">View
+                    Details</a>
+            </div>
+            <div class="product fade-in">
+                <img src="images/evolvingETB.jpg" alt="Evolving Skies Elite Trainer Box">
+                <h3>Evolving Skies Elite Trainer Box</h3>
+                <p>$319.99</p>
+                <a
+                    href="product_detail.html?name=${encodeURIComponent('Evolving Skies Elite Trainer Box')}&price=319.99">View
+                    Details</a>
+            </div>
+            <div class="product fade-in">
+                <img src="images/stellarETB.jpg" alt="Stellar Crown Elite Trainer Box">
+                <h3>Stellar Crown Elite Trainer Box</h3>
+                <p>$64.99</p>
+                <a href="product_detail.html?name=${encodeURIComponent('Stellar Crown Elite Trainer Box')}&price=64.99">View
+                    Details</a>
+            </div> -->
+        </div>
+    </section>
+
+    <!--- Reveiw Section -->
+    <section id="reviews-section" class="reviews-section">
+        <h2 align="center">Customer Reviews</h2>
+        <div id="reviews-container">
+            <h3 style="font-family: Arial" align="center">Johnny Laurin ⭐⭐⭐⭐⭐ </h3>
+            <p style="font-family: Arial" align="center">Amazing product quality and fast shipping! Will
+                definitely buy again.</p>
+            <h3 style="font-family: Arial" align="center">Jeffy The Rapper ⭐⭐⭐⭐⭐ </h3>
+            <p style="font-family: Arial" align="center">"Great customer service, and the packaging is the best."</p>
+            <h3 style="font-family: Arial" align="center">Ronald MacDonald ⭐⭐⭐⭐⭐ </h3>
+            <p style="font-family: Arial" align="center">"The cards were in pristine condition. Highly recommend!"</p>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:aandjpacks@gmail.com">aandjpacks@gmail.com</a></p>
+        <p>Phone: <a href="tel:6478552620">647-855-2620</a></p>
+        <p>Address: Montreal, QC, Canada, H3H 2L4</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AJ Packs</p>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo", price: 85.99, image: "images/pikachu.jpg", description: "FULL ART Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo" },
+            { name: "Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows", price: 49.99, image: "images/charizard.jpg", description: "Charizard-GX - 20/147 - Ultra Rare - Sun & Moon: Burning Shadows" },
+            { name: "Stellar Crown Booster Box", price: 159.99, image: "images/stellarbox.jpg" },
+            { name: "Evolving Skies Elite Trainer Box", price: 319.99, image: "images/evolvingETB.jpg" },
+            { name: "Stellar Crown Elite Trainer Box", price: 64.99, image: "images/stellarETB.jpg" },
+            { name: "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare", price: 48.99, image: "images/venusaur.jpg" },
+            { name: "Astral Radiance Booster Box", price: 249.99, image: "images/astralbox.webp" },
+            { name: "Mewtwo Assorted Ex Box", price: 144.99, image: "images/mewtwo.avif" },
+        ];
+
+
+        let productGrid = document.getElementById('product-grid');
+        let productIndex = 0;
+
+
+        loadMoreProducts();
+        loadMoreProducts();
+        loadMoreProducts();
+        loadMoreProducts();
+
+
+
+
+        function loadMoreProducts() {
+            for (let i = 0; i < 2; i++) {
+                if (productIndex >= products.length) break;
+
+                let product = products[productIndex];
+                let productDiv = document.createElement('div');
+                productDiv.classList.add('product', 'fade-in');
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price.toFixed(2)}</p>
+                    <a href="product_detail.html?name=${encodeURIComponent(product.name)}&price=${product.price}">View Details</a>
+                `;
+                productGrid.appendChild(productDiv);
+                productIndex++;
+            }
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

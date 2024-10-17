@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Packs - Product Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Brand and Search Bar -->
+    <header class="brand-bar">
+        <div class="brand-logo">
+            <h1>AJ Packs</h1>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="product-detail">
+        <img id="product-image" src="images/default.jpg" alt="Product Image">
+        <h3 id="product-name">Product Name</h3>
+        <p id="product-price">$0.00</p>
+        <p id="product-description">Product description goes here.</p>
+        <button id="add-to-cart">Add to Cart</button>
+    </section>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('name');
+        const productPrice = parseFloat(urlParams.get('price'));
+
+        const productDetails = {
+            "Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo": {
+                image: "images/pikachu.jpg",
+                description: "A beautiful full-art card featuring Pikachu VMAX, perfect for collectors and fans of the Pokémon series.",
+            },
+            "Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows": {
+                image: "images/charizard.jpg",
+                description: "An ultra-rare Charizard-GX card, known for its fiery attacks and iconic status among Pokémon fans.",
+            },
+            "Stellar Crown Booster Box": {
+                image: "images/stellarbox.jpg",
+                description: "A sealed booster box from the Stellar Crown series, perfect for expanding your collection with new cards.",
+            },
+            "Evolving Skies Elite Trainer Box": {
+                image: "images/evolvingETB.jpg",
+                description: "An elite trainer box from the Evolving Skies set, featuring new cards and collectibles.",
+            },
+            "Stellar Crown Elite Trainer Box": {
+                image: "images/stellarETB.jpg",
+                description: "The Stellar Crown Elite Trainer Box, packed with exclusive items for serious collectors.",
+            },
+            "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare": {
+                image: "images/venusaur.jpg",
+                description: "A stunning full art Venusaur ex card, showcasing its powers and beauty.",
+            },
+            "Astral Radiance Booster Box": {
+                image: "images/astralbox.webp",
+                description: "A booster box from the Astral Radiance series, filled with potential for exciting card pulls.",
+            },
+            "Mewtwo Assorted Ex Box": {
+                image: "images/mewtwo.avif",
+                description: "An assorted Ex box featuring Mewtwo, ideal for fans of the psychic Pokémon.",
+            },
+            "Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike": {
+                image: "images/gengar.jpg",
+                description: "A spooky Gengar V card from the Fusion Strike set, with powerful attacks and an ultra-rare status.",
+            },
+            "Lucario GX 135/131 Hyper Rare": {
+                image: "images/lucario.jpg",
+                description: "An ultra-rare Lucario GX card, featuring its iconic fighting moves and stunning design.",
+            },
+            "Eevee 188/167 Twilight Masquerade": {
+                image: "images/eevee.jpg",
+                description: "A rare Eevee card from the Twilight Masquerade series, showcasing its evolution potential.",
+            },
+            "Obsidian Flames Elite Trainer Box": {
+                image: "images/obsidianETB.jpg",
+                description: "The Obsidian Flames Elite Trainer Box, perfect for trainers looking to harness the power of the flames.",
+            },
+            "Dragonite V (Alternate Full Art) SWSH07 Evolving Skies": {
+                image: "images/dragonite.jpg",
+                description: "A beautiful alternate full art Dragonite V card, showcasing the mighty dragon Pokémon.",
+            },
+            "Gardevoir GX SV75/SV94 Shiny Ultra Rare": {
+                image: "images/gardevoir.webp",
+                description: "A shiny ultra-rare Gardevoir GX card, with elegant art and powerful psychic abilities.",
+            },
+            "Zygarde Figure Ex Box 2016": {
+                image: "images/zygarde.jpeg",
+                description: "A Zygarde Ex Box from 2016, featuring a detailed Zygarde figure and exclusive cards.",
+            },
+            "Umbreon VMAX 215/203 Sword and Shield Evolving Skies": {
+                image: "images/umbreon.jpg",
+                description: "A majestic Umbreon VMAX card from the Evolving Skies set, highly sought after by collectors.",
+            },
+            "Groudon EX 150/160 XY Primal Clash": {
+                image: "images/groudon.webp",
+                description: "An ultra-rare Groudon EX card from the Primal Clash set, showcasing the legendary Pokémon's power.",
+            },
+            "Rayquaza VMax 218/203 Sword and Shield Evolving Skies": {
+                image: "images/rayquaza.jpg",
+                description: "A stunning Rayquaza VMax card from Evolving Skies, perfect for dragon-type fans.",
+            },
+            "Ho-Oh GX 21/147 Ultra Rare Burning Shadows": {
+                image: "images/hoo.jpg",
+                description: "An ultra-rare Ho-Oh GX card, featuring the legendary rainbow-colored Pokémon in all its glory.",
+            },
+            "Trainer's Toolkit Box 2022": {
+                image: "images/toolkit.jpg",
+                description: "A trainer's selection of cards and packs alike, comes with 4 booster packs and more!",
+            }
+        };
+
+        if (productDetails[productName]) {
+            const productDetail = productDetails[productName];
+            document.getElementById('product-image').src = productDetail.image;
+            document.getElementById('product-name').textContent = productName;
+            document.getElementById('product-price').textContent = `$${productPrice.toFixed(2)}`;
+            document.getElementById('product-description').textContent = productDetail.description;
+        } else {
+            document.getElementById('product-name').textContent = "Product not found";
+            document.getElementById('product-description').textContent = "The requested product is not available.";
+        }
+        // Add product to cart
+        document.getElementById('add-to-cart').onclick = function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let existingProduct = cart.find(item => item.name === productName);
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ name: productName, price: productPrice, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to the cart!`);
+            window.location.href = "cart.html"; // Redirect to the cart page
+        };
+    </script>
+</body>
+
+</html>

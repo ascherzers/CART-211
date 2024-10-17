@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Packs - Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&family=Comic+Neue:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Brand and Navigation Bar -->
+    <header class="brand-bar">
+        <div class="brand-logo">
+            <h1>AJ Packs</h1>
+        </div>
+        <nav class="navigation-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="checkout.html" class="checkout-btn">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <h2 style="text-align: center;">Checkout</h2>
+        <div id="checkout-summary">
+            <h3 style="text-align: center;">Your Cart Items</h3>
+            <table style="width: 90%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Product</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+            </table>
+            <h3 style="text-align: center;">Total Amount: <span id="total-price">$0.00</span></h3>
+        </div>
+
+        <form id="checkout-form" , style="text-align: center;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Shipping Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="payment">Payment Information:</label>
+            <input type="text" id="payment" name="payment" placeholder="Credit Card Number" required>
+            <br>
+            <br>
+            <br>
+            <button style="font-size:2vw" , style="height:80px;width:130px">Complete Purchase</button>
+            <br>
+            <button style="height:40px;width:75px" , style="font-size:1.5vw"><a href="products.html">Cancel
+                    Checkout</a></button>
+
+        </form>
+    </section>
+
+    <footer>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <p>&copy; 2024 AJ Packs</p>
+    </footer>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartTableBody = document.getElementById('cart-items');
+            let totalPrice = 0;
+
+            cartTableBody.innerHTML = '';
+
+            cart.forEach(item => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                `;
+                cartTableBody.appendChild(row);
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            alert("Thank you for your purchase!");
+            // Here you could add further logic to handle payment processing, etc.
+        });
+
+        window.onload = loadCart; // Load cart items on page load
+    </script>
+</body>
+
+</html>

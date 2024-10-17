@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Packs - Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&display=swap" rel="stylesheet">
+    <style>
+        .cart {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Brand and Search Bar -->
+    <header class="brand-bar">
+        <div class="brand-logo">
+            <h1>AJ Packs</h1>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+    </nav>
+
+    <section class="cart">
+
+        <br><br><br><br><br><br>
+        <h2 style="font-size:5vw" ,="text-align: center;">Your Cart Items</h3>
+            <table style="width: 85%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Product</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+            </table>
+
+            <h3 style="font-size:4vw">Total: <span id="total-price">$0.00</span></h3>
+            <button style="height:80px;width:230px">
+                <h4 style="font-size:1.5vw"><a href="products.html">Continue Shopping</a></h4>
+            </button>
+            <br><button onclick="alert('Proceeding to checkout')" , style="height:90px;width:130px">
+                <h5 style="font-size:1.5vw"><a href="checkout.html">Checkout</a></h5>
+            </button>
+
+    </section>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartTableBody = document.getElementById('cart-items');
+            let totalPrice = 0;
+
+            cartTableBody.innerHTML = '';
+
+            cart.forEach(item => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)"></td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                    <td><button onclick="removeFromCart('${item.name}')">Remove</button></td>
+                `;
+                cartTableBody.appendChild(row);
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function updateQuantity(productName, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            let product = cart.find(item => item.name === productName);
+            product.quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeFromCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            cart = cart.filter(item => item.name !== productName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+
+</html>

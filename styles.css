@@ -1,0 +1,323 @@
+/* General Styles */
+body {
+    font-family: 'Copperplate', Papyrus, fantasy;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Brand Bar */
+.brand-bar {
+    background-color: #4f86f7;
+    /* Berry Blue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.brand-logo h1 {
+    font-family: 'Garamond', serif;
+    font-size: 24px;
+    margin: 0;
+    color: white;
+}
+
+.search-bar-container {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.search-bar-container input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Navigation Bar */
+.navigation-bar {
+    background-color: #d00050;
+    /* Berry Red */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navigation-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-bar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navigation-bar ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+/* Banner - Fun Font and Style */
+.banner {
+    text-align: center;
+    padding: 40px;
+    background-color: #4f86f7;
+}
+
+.banner h2.fun-font {
+    font-family: 'Copperplate', Papyrus, fantasy;
+    /* Fun Comic Style Font */
+    font-size: 40px;
+    color: white;
+    margin: 0;
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.featured-products .small-font {
+    font-family: 'Copperplate', Papyrus, fantasy;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Product Grid Layout - 2 Products per Row */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    /* Space between products */
+    padding: 20px;
+}
+
+/* Product Box */
+.product {
+    width: 45%;
+    /* Adjusted for smaller product boxes */
+    background-color: #d00050;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 70%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    /* Adjusted font size */
+}
+
+.product p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Add hover effect for better user experience */
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design: Adjust to 2 products per row on medium screens */
+@media screen and (max-width: 800px) {
+    .product {
+        width: 45%;
+    }
+}
+
+/* Responsive design: Adjust to 1 product per row on small screens */
+@media screen and (max-width: 600px) {
+    .product {
+        width: 100%;
+    }
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #4f86f7;
+    /* Berry Blue Background */
+    color: white;
+}
+
+.contact-section a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #d00050;
+    /* Berry Red */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Button Styles */
+.button {
+    background-color: #4f86f7;
+    /* Berry Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #3a6bbf;
+    /* Darker shade of Berry Blue */
+}
+
+/* Additional Media Queries for Accessibility */
+@media screen and (max-width: 400px) {
+    .brand-logo h1 {
+        font-size: 20px;
+        /* Adjust logo font size for smaller screens */
+    }
+
+    .search-bar-container input {
+        width: 80%;
+        /* Make search bar wider on small screens */
+    }
+
+    .banner h2.fun-font {
+        font-size: 30px;
+        /* Smaller font size for banner on small screens */
+    }
+
+    .featured-products .small-font {
+        font-size: 18px;
+        /* Adjust featured products font size */
+    }
+
+    .product h3 {
+        font-size: 14px;
+        /* Smaller product title font size */
+    }
+}
+
+.reviews-section {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.review h3 {
+    font-family: 'Comic Neue', sans-serif;
+}
+
+.review p {
+    font-family: 'Garamond', serif;
+}
+
+/* .submit {
+    height: 500px;
+    width: 500px;
+} */
+
+/* Center the product detail section */
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    /* Center vertically */
+    text-align: center;
+    padding: 20px;
+}
+
+/* Image Styling: Resize and keep aspect ratio */
+.product-detail img {
+    width: 100%;
+    max-width: 300px;
+    /* Adjust size */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Info */
+.product-detail h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.product-detail p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.product-detail button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.product-detail button:hover {
+    background-color: #45a049;
+}
+
+.navigation-bar a:hover {
+    text-decoration: underline;
+}
+
+.filter-dropdown button {
+    background-color: #3a6bbf;
+    color: white;
+    font-family: 'Comic Neue', sans-serif;
+    border: none;
+}
+
+/* .checkout-form button {
+    text-decoration: none;
+    background-color: #ff0202;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+} */
