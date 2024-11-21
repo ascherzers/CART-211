@@ -275,11 +275,6 @@ body {
     font-family: 'Garamond', serif;
 }
 
-/* .submit {
-    height: 500px;
-    width: 500px;
-} */
-
 /* Center the product detail section */
 .product-detail {
     display: flex;
@@ -340,15 +335,6 @@ body {
     font-family: 'Comic Neue', sans-serif;
     border: none;
 }
-
-/* .checkout-form button {
-    text-decoration: none;
-    background-color: #ff0202;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-} */
 
 /* Slideshow Title */
 .section-title {
