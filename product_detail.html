@@ -16,7 +16,11 @@
             <h1>AJ Packs</h1>
         </div>
         <div class="search-bar-container">
-            <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
+            <form action="products.html" method="get">
+                <input type="text" id="search-input" name="search" placeholder="Search AJ Packs..."
+                    onkeyup="filterProducts()" />
+                <button type="submit">Search</button>
+            </form>
         </div>
     </header>
 
@@ -124,13 +128,33 @@
             "Trainer's Toolkit Box 2022": {
                 image: "images/toolkit.jpg",
                 description: "A trainer's selection of cards and packs alike, comes with 4 booster packs and more!",
+            },
+            "Surging Sparks Elite Trainer Box": {
+                image: "images/surging.webp",
+                description: "A premium Pokémon Elite Trainer Box from the Surging Sparks series, perfect for any serious collector.",
+            },
+            "Ogerpon ex Premium Collection": {
+                image: "images/ogerpon.jpg",
+                description: "An exclusive Ogerpon ex Premium Collection box, featuring special cards and collectibles.",
+            },
+            "Bloodmoon Ursaluna ex Box": {
+                image: "images/bloodmoon_ursaluna.jpg",
+                description: "The Bloodmoon Ursaluna ex Box includes a powerful ex card and collectible items from the Scarlet & Violet series.",
+            },
+            "Pokemon Grand Adventure Collection": {
+                image: "images/grand_adventure.jpg",
+                description: "Embark on a grand adventure with this special Pokémon collection, featuring unique cards and accessories.",
+            },
+            "League Battle Deck Charizard ex": {
+                image: "images/charizardLeague.jpg",
+                description: "A special League Battle Deck featuring Charizard ex, a must-have for competitive Pokémon players.",
             }
         };
 
         if (productDetails[productName]) {
             const productDetail = productDetails[productName];
-            document.getElementById('product-image').src = productDetail.image;
             document.getElementById('product-name').textContent = productName;
+            document.getElementById('product-image').src = productDetail.image;
             document.getElementById('product-price').textContent = `$${productPrice.toFixed(2)}`;
             document.getElementById('product-description').textContent = productDetail.description;
         } else {
@@ -152,6 +176,41 @@
             alert(`${productName} has been added to the cart!`);
             window.location.href = "cart.html"; // Redirect to the cart page
         };
+        window.onload = function () {
+            // Get search query from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+
+            if (searchQuery) {
+                // Filter products based on search query
+                const filteredProducts = featuredProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+
+                displayProducts(filteredProducts);
+            } else {
+                // Display all products if no search query
+                displayProducts(featuredProducts);
+            }
+        };
+
+        function displayProducts(products) {
+            const newArrivalsContainer = document.querySelector('.new-arrivals-container');
+            newArrivalsContainer.innerHTML = ''; // Clear any existing products
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.innerHTML = `
+                <a href="${product.url}">
+                    <img src="${product.image}" alt="${product.name}">
+                </a>
+                <h3>${product.name}</h3>
+                <p class="price">$${product.price.toFixed(2)}</p>
+            `;
+                newArrivalsContainer.appendChild(card);
+            });
+        }
     </script>
 </body>
 

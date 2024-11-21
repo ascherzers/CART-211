@@ -17,8 +17,10 @@ body {
 }
 
 .brand-logo h1 {
-    font-family: 'Garamond', serif;
-    font-size: 24px;
+    font-family: 'Copperplate',
+        Papyrus,
+        fantasy;
+    font-size: 30px;
     margin: 0;
     color: white;
 }
@@ -89,11 +91,11 @@ body {
     margin-bottom: 20px;
 }
 
-/* Product Grid Layout - 2 Products per Row */
+/* Product Grid Layout - 3 Products per Row */
 .product-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
     /* Space between products */
     padding: 20px;
@@ -101,14 +103,17 @@ body {
 
 /* Product Box */
 .product {
-    width: 45%;
-    /* Adjusted for smaller product boxes */
+    width: calc(33.33% - 20px);
+    /* Ensures three products per row with space between them */
     background-color: #d00050;
+    box-sizing: border-box;
+    /* Ensures padding and border are included in width */
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, opacity 0.5s ease;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    color: white;
 }
 
 .product img {
@@ -124,7 +129,7 @@ body {
 }
 
 .product p {
-    font-size: 14px;
+    font-size: 20px;
     margin: 5px 0;
 }
 
@@ -148,6 +153,27 @@ body {
     }
 }
 
+.product a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product a:hover img {
+    transform: scale(1.05);
+    /* Slight enlargement */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Pop-up shadow effect */
+}
+
+
 /* Contact Section */
 .contact-section {
     text-align: center;
@@ -166,7 +192,7 @@ body {
 .footer {
     background-color: #d00050;
     /* Berry Red */
-    color: white;
+    color: #d00050;
     text-align: center;
     padding: 20px;
     position: relative;
@@ -177,6 +203,7 @@ body {
 .footer p {
     margin: 5px 0;
 }
+
 
 /* Button Styles */
 .button {
@@ -225,18 +252,19 @@ body {
 }
 
 .reviews-section {
-    background-color: #f4f4f4;
+    background-color: #d00050;
     padding: 20px;
     margin: 20px 0;
     border-radius: 8px;
+    color: white;
 }
 
 .review {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
+    /* margin-bottom: 15px;
+    padding: 15px; */
+    /* border: 1px solid #d00050;
+    border-radius: 5px; */
+    background-color: #d00050;
 }
 
 .review h3 {
@@ -321,3 +349,171 @@ body {
     padding: 10px 20px;
     font-size: 18px;
 } */
+
+/* Slideshow Title */
+.section-title {
+    font-size: 5vw;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Slide */
+.product-slide {
+    display: flex;
+    width: 90%;
+    gap: 20px;
+}
+
+.product-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product-details {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.product-details h3 {
+    font-size: 2.5rem;
+    /* Larger text for product name */
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 35px;
+    /* Larger text for price and description */
+    margin: 10px 0;
+}
+
+/* Buy Now Button */
+.buy-now-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-now-btn:hover {
+    background-color: #45a049;
+}
+
+/* Arrow Buttons */
+.arrow {
+    background-color: #4f86f7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.arrow:hover {
+    background-color: #3a6bbf;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .product-slide {
+        flex-direction: column;
+    }
+
+    .product-details {
+        text-align: center;
+    }
+}
+
+.new-arrivals {
+    margin: 50px 0;
+}
+
+.new-arrivals .section-title {
+    font-family: 'Comic Neue', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.new-arrivals-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card h3 {
+    font-size: 1em;
+    margin: 10px 0;
+    font-family: 'Garamond', serif;
+}
+
+.product-card .price {
+    font-weight: bold;
+    color: #d9534f;
+    font-size: 1.1em;
+}
+
+.product-card a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card a:hover img {
+    transform: scale(1.05);
+    /* Slight enlargement */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Pop-up shadow effect */
+}

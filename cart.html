@@ -10,6 +10,35 @@
     <style>
         .cart {
             text-align: center;
+            position: relative;
+        }
+
+        /* Styling for buttons */
+        .cart button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            /* Reduced padding */
+            font-size: 16px;
+            /* Reduced font size */
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        /* Center the 'Continue Shopping' button over the 'Your Cart Items' */
+        .continue-shopping {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Styling for the 'Checkout' button */
+        .checkout-button {
+            width: auto;
         }
     </style>
 </head>
@@ -21,7 +50,11 @@
             <h1>AJ Packs</h1>
         </div>
         <div class="search-bar-container">
-            <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
+            <form action="products.html" method="get">
+                <input type="text" id="search-input" name="search" placeholder="Search AJ Packs..."
+                    onkeyup="filterProducts()" />
+                <button type="submit">Search</button>
+            </form>
         </div>
     </header>
 
@@ -36,8 +69,15 @@
     </nav>
 
     <section class="cart">
-
         <br><br><br><br><br><br>
+
+        <!-- 'Continue Shopping' Button placed over 'Your Cart Items' -->
+        <div class="continue-shopping">
+            <button>
+                <h4><a href="products.html" style="color: white; text-decoration: none;">Continue Shopping</a></h4>
+            </button>
+        </div>
+
         <h2 style="font-size:5vw" ,="text-align: center;">Your Cart Items</h3>
             <table style="width: 85%; border-collapse: collapse;">
                 <thead>
@@ -52,11 +92,10 @@
             </table>
 
             <h3 style="font-size:4vw">Total: <span id="total-price">$0.00</span></h3>
-            <button style="height:80px;width:230px">
-                <h4 style="font-size:1.5vw"><a href="products.html">Continue Shopping</a></h4>
-            </button>
-            <br><button onclick="alert('Proceeding to checkout')" , style="height:90px;width:130px">
-                <h5 style="font-size:1.5vw"><a href="checkout.html">Checkout</a></h5>
+
+            <!-- Checkout button -->
+            <button class="checkout-button" onclick="alert('Proceeding to checkout')">
+                <h5><a href="checkout.html" style="color: white; text-decoration: none;">Checkout</a></h5>
             </button>
 
     </section>
@@ -101,6 +140,42 @@
         }
 
         window.onload = loadCart;
+
+        window.onload = function () {
+            // Get search query from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+
+            if (searchQuery) {
+                // Filter products based on search query
+                const filteredProducts = featuredProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+
+                displayProducts(filteredProducts);
+            } else {
+                // Display all products if no search query
+                displayProducts(featuredProducts);
+            }
+        };
+
+        function displayProducts(products) {
+            const newArrivalsContainer = document.querySelector('.new-arrivals-container');
+            newArrivalsContainer.innerHTML = ''; // Clear any existing products
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.innerHTML = `
+                <a href="${product.url}">
+                    <img src="${product.image}" alt="${product.name}">
+                </a>
+                <h3>${product.name}</h3>
+                <p class="price">$${product.price.toFixed(2)}</p>
+            `;
+                newArrivalsContainer.appendChild(card);
+            });
+        }
     </script>
 </body>
 

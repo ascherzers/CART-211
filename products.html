@@ -9,15 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&display=swap" rel="stylesheet">
     <style>
         .product {
-            margin: 5px;
-            /* Reduced margin to bring products closer together */
-            padding: 15px;
-            /* Increased padding for more space inside each product box */
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            width: calc(33.33% - 20px);
+            /* Ensures three products per row with space between them */
+            background-color: #d00050;
             box-sizing: border-box;
-            width: 100%;
-            /* Ensures products use the full width of their grid cell */
+            /* Ensures padding and border are included in width */
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            color: white;
         }
 
         .filter-section {
@@ -39,16 +41,14 @@
             margin: 5px 0;
         }
 
+        /* Product Grid Layout - 3 Products per Row */
         .product-grid {
-            width: 70%;
-            float: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            /* Space between products */
             padding: 20px;
-            box-sizing: border-box;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            /* Two columns */
-            gap: 10px;
-            /* Reduced gap between products */
         }
 
 
@@ -66,7 +66,7 @@
         </div>
         <div class="search-bar-container">
             <input type="text" id="search-input" placeholder="Search AJ Packs..." onkeyup="filterProducts()">
-            <button id="start-record-btn" class="voice-btn">Microphone</button>
+            <button type="submit">Search</button>
         </div>
     </header>
 
@@ -100,35 +100,261 @@
 
     <!-- Product grid -->
     <section class="product-grid" id="product-grid">
-        <!-- Products will be dynamically loaded here -->
+        <div class="product" data-category="singles" data-series="sword-shield"
+            data-name="Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo" data-price="85.99">
+            <a
+                href="product_detail.html?name=Pikachu%20VMAX%20Trainer%20Gallery%20TG17/TG30%20Pokemon%20Ultra%20Rare%20Holo&price=85.99">
+                <img src="images/pikachu.jpg" alt="Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo">
+            </a>
+            <h3>FULL ART Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo</h3>
+            <p>$85.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sun-moon"
+            data-name="Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows" data-price="49.99">
+            <a
+                href="product_detail.html?name=Charizard%20GX%2020/147%20Ultra%20Rare%20Sun%20&%20Moon%20Burning%20Shadows&price=49.99">
+                <img src="images/charizard.jpg" alt="Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows">
+            </a>
+            <h3>Charizard-GX - 20/147 - Ultra Rare - Sun & Moon: Burning Shadows</h3>
+            <p>$49.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="scarlet-violet" data-name="Stellar Crown Booster Box"
+            data-price="159.99">
+            <a href="product_detail.html?name=Stellar%20Crown%20Booster%20Box&price=159.99">
+                <img src="images/stellarbox.jpg" alt="Stellar Crown Booster Box">
+            </a>
+            <h3>Stellar Crown Booster Box</h3>
+            <p>$159.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="sword-shield"
+            data-name="Evolving Skies Elite Trainer Box" data-price="319.99">
+            <a href="product_detail.html?name=Evolving%20Skies%20Elite%20Trainer%20Box&price=319.99">
+                <img src="images/evolvingETB.jpg" alt="Evolving Skies Elite Trainer Box">
+            </a>
+            <h3>Evolving Skies Elite Trainer Box</h3>
+            <p>$319.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="scarlet-violet"
+            data-name="Stellar Crown Elite Trainer Box" data-price="64.99">
+            <a href="product_detail.html?name=Stellar%20Crown%20Elite%20Trainer%20Box&price=64.99">
+                <img src="images/stellarETB.jpg" alt="Stellar Crown Elite Trainer Box">
+            </a>
+            <h3>Stellar Crown Elite Trainer Box</h3>
+            <p>$64.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="scarlet-violet"
+            data-name="Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare" data-price="48.99">
+            <a
+                href="product_detail.html?name=Venusaur%20ex%20182/165%20Pokemon%20151%20Full%20Art%20Ultra%20Rare&price=48.99">
+                <img src="images/venusaur.jpg" alt="Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare">
+            </a>
+            <h3>Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare</h3>
+            <p>$48.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="sword-shield" data-name="Astral Radiance Booster Box"
+            data-price="249.99">
+            <a href="product_detail.html?name=Astral%20Radiance%20Booster%20Box&price=249.99">
+                <img src="images/astralbox.webp" alt="Astral Radiance Booster Box">
+            </a>
+            <h3>Astral Radiance Booster Box</h3>
+            <p>$249.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="xy" data-name="Mewtwo Assorted Ex Box"
+            data-price="144.99">
+            <a href="product_detail.html?name=Mewtwo%20Assorted%20Ex%20Box&price=144.99">
+                <img src="images/mewtwo.avif" alt="Mewtwo Assorted Ex Box">
+            </a>
+            <h3>Mewtwo Assorted Ex Box</h3>
+            <p>$144.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sword-shield"
+            data-name="Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike" data-price="12.99">
+            <a
+                href="product_detail.html?name=Gengar%20V%20156/264%20Ultra%20Rare%20Sword%20&%20Shield%20Fusion%20Strike&price=12.99">
+                <img src="images/gengar.jpg" alt="Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike">
+            </a>
+            <h3>Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike</h3>
+            <p>$12.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sun-moon" data-name="Lucario GX 135/131 Hyper Rare"
+            data-price="64.99">
+            <a href="product_detail.html?name=Lucario%20GX%20135/131%20Hyper%20Rare&price=64.99">
+                <img src="images/lucario.jpg" alt="Lucario GX 135/131 Hyper Rare">
+            </a>
+            <h3>Lucario GX 135/131 Hyper Rare</h3>
+            <p>$64.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="scarlet-violet"
+            data-name="Eevee 188/167 Twilight Masquerade" data-price="85.99">
+            <a href="product_detail.html?name=Eevee%20188/167%20Twilight%20Masquerade&price=85.99">
+                <img src="images/eevee.jpg" alt="Eevee 188/167 Twilight Masquerade">
+            </a>
+            <h3>Eevee 188/167 Twilight Masquerade</h3>
+            <p>$85.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="scarlet-violet"
+            data-name="Obsidian Flames Elite Trainer Box" data-price="59.99">
+            <a href="product_detail.html?name=Obsidian%20Flames%20Elite%20Trainer%20Box&price=59.99">
+                <img src="images/obsidianETB.jpg" alt="Obsidian Flames Elite Trainer Box">
+            </a>
+            <h3>Obsidian Flames Elite Trainer Box</h3>
+            <p>$59.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sword-shield"
+            data-name="Dragonite V (Alternate Full Art) SWSH07 Evolving Skies" data-price="149.99">
+            <a
+                href="product_detail.html?name=Dragonite%20V%20(Alternate%20Full%20Art)%20SWSH07%20Evolving%20Skies&price=149.99">
+                <img src="images/dragonite.jpg" alt="Dragonite V (Alternate Full Art) SWSH07 Evolving Skies">
+            </a>
+            <h3>Dragonite V (Alternate Full Art) SWSH07 Evolving Skies</h3>
+            <p>$149.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sun-moon"
+            data-name="Gardevoir GX SV75/SV94 Shiny Ultra Rare" data-price="34.99">
+            <a href="product_detail.html?name=Gardevoir%20GX%20SV75/SV94%20Shiny%20Ultra%20Rare&price=34.99">
+                <img src="images/gardevoir.webp" alt="Gardevoir GX SV75/SV94 Shiny Ultra Rare">
+            </a>
+            <h3>Gardevoir GX SV75/SV94 Shiny Ultra Rare</h3>
+            <p>$34.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="xy" data-name="Zygarde Figure Ex Box 2016"
+            data-price="74.99">
+            <a href="product_detail.html?name=Zygarde%20Figure%20Ex%20Box%202016&price=74.99">
+                <img src="images/zygarde.jpeg" alt="Zygarde Figure Ex Box 2016">
+            </a>
+            <h3>Zygarde Figure Ex Box 2016</h3>
+            <p>$74.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sword-shield"
+            data-name="Umbreon VMAX 215/203 Sword and Shield Evolving Skies" data-price="1079.99">
+            <a
+                href="product_detail.html?name=Umbreon%20VMAX%20215/203%20Sword%20and%20Shield%20Evolving%20Skies&price=1079.99">
+                <img src="images/umbreon.jpg" alt="Umbreon VMAX 215/203 Sword and Shield Evolving Skies">
+            </a>
+            <h3>Umbreon VMAX 215/203 Sword and Shield Evolving Skies</h3>
+            <p>$1079.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="xy" data-name="Groudon EX 150/160 XY Primal Clash"
+            data-price="44.99">
+            <a href="product_detail.html?name=Groudon%20EX%20150/160%20XY%20Primal%20Clash&price=44.99">
+                <img src="images/groudon.webp" alt="Groudon EX 150/160 XY Primal Clash">
+            </a>
+            <h3>Groudon EX 150/160 XY Primal Clash</h3>
+            <p>$44.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sword-shield"
+            data-name="Rayquaza VMax 218/203 Sword and Shield Evolving Skies" data-price="524.99">
+            <a
+                href="product_detail.html?name=Rayquaza%20VMax%20218/203%20Sword%20and%20Shield%20Evolving%20Skies&price=524.99">
+                <img src="images/rayquaza.jpg" alt="Rayquaza VMax 218/203 Sword and Shield Evolving Skies">
+            </a>
+            <h3>Rayquaza VMax 218/203 Sword and Shield Evolving Skies</h3>
+            <p>$524.99</p>
+        </div>
+
+        <div class="product" data-category="singles" data-series="sun-moon"
+            data-name="Ho-Oh GX 21/147 Ultra Rare Burning Shadows" data-price="18.99">
+            <a href="product_detail.html?name=Ho-Oh%20GX%2021/147%20Ultra%20Rare%20Burning%20Shadows&price=18.99">
+                <img src="images/hoo.jpg" alt="Ho-Oh GX 21/147 Ultra Rare Burning Shadows">
+            </a>
+            <h3>Ho-Oh GX 21/147 Ultra Rare Burning Shadows</h3>
+            <p>$18.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="sword-shield" data-name="Trainer's Toolkit Box 2022"
+            data-price="39.99">
+            <a href="product_detail.html?name=Trainer's%20Toolkit%20Box%202022&price=39.99">
+                <img src="images/toolkit.jpg" alt="Trainer's Toolkit Box 2022">
+            </a>
+            <h3>Trainer's Toolkit Box 2022</h3>
+            <p>$39.99</p>
+        </div>
+
+        <div class="product" data-category="sealed" data-series="scarlet-violet"
+            data-name="Pokemon Surging Sparks Elite Trainer Box" data-price="14.95">
+            <a href="product_detail.html?name=Pokemon+Surging+Sparks+Elite+Trainer+Box">
+                <img src="images/surging.webp" alt="Pokemon Surging Sparks Elite Trainer Box">
+            </a>
+            <h3>Surging Sparks Elite Trainer Box</h3>
+            <p>$14.95</p>
+        </div>
+        <div class="product" data-category="sealed" data-series="scarlet-violet"
+            data-name="Ogerpon ex Premium Collection" data-price="37.49">
+            <a href="product_detail.html?name=Ogerpon+ex+Premium+Collection">
+                <img src="images/ogerpon.jpg" alt="Ogerpon ex Premium Collection">
+            </a>
+            <h3>Ogerpon ex Premium Collection</h3>
+            <p>$37.49</p>
+        </div>
+        <div class="product" data-category="sealed" data-series="scarlet-violet" data-name="Bloodmoon Ursaluna ex Box"
+            data-price="18.49">
+            <a href="product_detail.html?name=Bloodmoon+Ursaluna+ex+Box">
+                <img src="images/bloodmoon_ursaluna.jpg" alt="Bloodmoon Ursaluna ex Box">
+            </a>
+            <h3>Bloodmoon Ursaluna ex Box</h3>
+            <p>$18.49</p>
+        </div>
+        <div class="product" data-category="sealed" data-series="scarlet-violet" data-name="Grand Adventure Collection"
+            data-price="17.95">
+            <a href="product_detail.html?name=Pokemon+Grand+Adventure+Collection">
+                <img src="images/grand_adventure.jpg" alt="Grand Adventure Collection">
+            </a>
+            <h3>Pokemon Grand Adventure Collection</h3>
+            <p>$17.95</p>
+        </div>
+        <div class="product" data-category="sealed" data-series="scarlet-violet"
+            data-name="League Battle Deck Charizard ex" data-price="29.95">
+            <a href="product_detail.html?name=League+Battle+Deck+Charizard+ex">
+                <img src="images/charizardLeague.jpg" alt="League Battle Deck Charizard ex">
+            </a>
+            <h3>League Battle Deck [Charizard ex]</h3>
+            <p>$29.95</p>
+        </div>
     </section>
     <footer>
         <p>&copy; 2024 AJ Packs</p>
     </footer>
 
     <script>
-        const products = [
-            { name: "Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo", price: 85.99, category: "singles", series: "sword-shield", image: "images/pikachu.jpg", description: "FULL ART Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo" },
-            { name: "Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows", price: 49.99, category: "singles", series: "sun-moon", image: "images/charizard.jpg", description: "Charizard-GX - 20/147 - Ultra Rare - Sun & Moon: Burning Shadows" },
-            { name: "Stellar Crown Booster Box", price: 159.99, category: "sealed", series: "scarlet-violet", image: "images/stellarbox.jpg", description: "Stellar Crown Booster Box" },
-            { name: "Evolving Skies Elite Trainer Box", price: 319.99, category: "sealed", series: "sword-shield", image: "images/evolvingETB.jpg", description: "Evolving Skies Elite Trainer Box" },
-            { name: "Stellar Crown Elite Trainer Box", price: 64.99, category: "sealed", series: "scarlet-violet", image: "images/stellarETB.jpg", description: "Stellar Crown Elite Trainer Box" },
-            { name: "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare", price: 48.99, category: "singles", series: "scarlet-violet", image: "images/venusaur.jpg", description: "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare" },
-            { name: "Astral Radiance Booster Box", price: 249.99, category: "sealed", series: "sword-shield", image: "images/astralbox.webp", description: "Astral Radiance Booster Box" },
-            { name: "Mewtwo Assorted Ex Box", price: 144.99, category: "sealed", series: "xy", image: "images/mewtwo.avif", description: "Mewtwo Assorted Ex Box" },
-            { name: "Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike", price: 12.99, category: "singles", series: "sword-shield", image: "images/gengar.jpg", description: "Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike" },
-            { name: "Lucario GX 135/131 Hyper Rare", price: 64.99, category: "singles", series: "sun-moon", image: "images/lucario.jpg", description: "Lucario GX 135/131 Hyper Rare" },
-            { name: "Eevee 188/167 Twilight Masquerade", price: 85.99, category: "singles", series: "scarlet-violet", image: "images/eevee.jpg", description: "Eevee 188/167 Twilight Masquerade" },
-            { name: "Obsidian Flames Elite Trainer Box", price: 59.99, category: "sealed", series: "scarlet-violet", image: "images/obsidianETB.jpg", description: "Obsidian Flames Elite Trainer Box" },
-            { name: "Dragonite V (Alternate Full Art) SWSH07 Evolving Skies", price: 149.99, category: "singles", series: "sword-shield", image: "images/dragonite.jpg", description: "Dragonite V (Alternate Full Art) SWSH07 Evolving Skies" },
-            { name: "Gardevoir GX SV75/SV94 Shiny Ultra Rare", price: 34.99, category: "singles", series: "sun-moon", image: "images/gardevoir.webp", description: "Gardevoir GX SV75/SV94 Shiny Ultra Rare" },
-            { name: "Zygarde Figure Ex Box 2016", price: 74.99, category: "sealed", series: "xy", image: "images/zygarde.jpeg", description: "Zygarde Figure Ex Box 2016" },
-            { name: "Umbreon VMAX 215/203 Sword and Shield Evolving Skies", price: 1079.99, category: "singles", series: "sword-shield", image: "images/umbreon.jpg", description: "Umbreon VMAX 215/203 Sword and Shield Evolving Skies" },
-            { name: "Groudon EX 150/160 XY Primal Clash", price: 44.99, category: "singles", series: "xy", image: "images/groudon.webp", description: "Groudon EX 150/160 XY Primal Clash" },
-            { name: "Rayquaza VMax 218/203 Sword and Shield Evolving Skies", price: 524.99, category: "singles", series: "sword-shield", image: "images/rayquaza.jpg", description: "Rayquaza VMax 218/203 Sword and Shield Evolving Skies" },
-            { name: "Ho-Oh GX 21/147 Ultra Rare Burning Shadows", price: 18.99, category: "singles", series: "sun-moon", image: "images/hoo.jpg", description: "Ho-Oh GX 21/147 Ultra Rare Burning Shadows" },
-            { name: "Trainer's Toolkit Box 2022", price: 39.99, category: "sealed", series: "sword-shield", image: "images/toolkit.jpg", description: "Trainer's Toolkit Box 2022" }
-        ];
+        // const products = [
+        //     { name: "Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo", price: 85.99, category: "singles", series: "sword-shield", image: "images/pikachu.jpg", description: "FULL ART Pikachu VMAX Trainer Gallery TG17/TG30 Pokemon Ultra Rare Holo" },
+        //     { name: "Charizard GX 20/147 Ultra Rare Sun & Moon Burning Shadows", price: 49.99, category: "singles", series: "sun-moon", image: "images/charizard.jpg", description: "Charizard-GX - 20/147 - Ultra Rare - Sun & Moon: Burning Shadows" },
+        //     { name: "Stellar Crown Booster Box", price: 159.99, category: "sealed", series: "scarlet-violet", image: "images/stellarbox.jpg", description: "Stellar Crown Booster Box" },
+        //     { name: "Evolving Skies Elite Trainer Box", price: 319.99, category: "sealed", series: "sword-shield", image: "images/evolvingETB.jpg", description: "Evolving Skies Elite Trainer Box" },
+        //     { name: "Stellar Crown Elite Trainer Box", price: 64.99, category: "sealed", series: "scarlet-violet", image: "images/stellarETB.jpg", description: "Stellar Crown Elite Trainer Box" },
+        //     { name: "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare", price: 48.99, category: "singles", series: "scarlet-violet", image: "images/venusaur.jpg", description: "Venusaur ex 182/165 Pokemon 151 Full Art Ultra Rare" },
+        //     { name: "Astral Radiance Booster Box", price: 249.99, category: "sealed", series: "sword-shield", image: "images/astralbox.webp", description: "Astral Radiance Booster Box" },
+        //     { name: "Mewtwo Assorted Ex Box", price: 144.99, category: "sealed", series: "xy", image: "images/mewtwo.avif", description: "Mewtwo Assorted Ex Box" },
+        //     { name: "Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike", price: 12.99, category: "singles", series: "sword-shield", image: "images/gengar.jpg", description: "Gengar V 156/264 Ultra Rare Sword & Shield Fusion Strike" },
+        //     { name: "Lucario GX 135/131 Hyper Rare", price: 64.99, category: "singles", series: "sun-moon", image: "images/lucario.jpg", description: "Lucario GX 135/131 Hyper Rare" },
+        //     { name: "Eevee 188/167 Twilight Masquerade", price: 85.99, category: "singles", series: "scarlet-violet", image: "images/eevee.jpg", description: "Eevee 188/167 Twilight Masquerade" },
+        //     { name: "Obsidian Flames Elite Trainer Box", price: 59.99, category: "sealed", series: "scarlet-violet", image: "images/obsidianETB.jpg", description: "Obsidian Flames Elite Trainer Box" },
+        //     { name: "Dragonite V (Alternate Full Art) SWSH07 Evolving Skies", price: 149.99, category: "singles", series: "sword-shield", image: "images/dragonite.jpg", description: "Dragonite V (Alternate Full Art) SWSH07 Evolving Skies" },
+        //     { name: "Gardevoir GX SV75/SV94 Shiny Ultra Rare", price: 34.99, category: "singles", series: "sun-moon", image: "images/gardevoir.webp", description: "Gardevoir GX SV75/SV94 Shiny Ultra Rare" },
+        //     { name: "Zygarde Figure Ex Box 2016", price: 74.99, category: "sealed", series: "xy", image: "images/zygarde.jpeg", description: "Zygarde Figure Ex Box 2016" },
+        //     { name: "Umbreon VMAX 215/203 Sword and Shield Evolving Skies", price: 1079.99, category: "singles", series: "sword-shield", image: "images/umbreon.jpg", description: "Umbreon VMAX 215/203 Sword and Shield Evolving Skies" },
+        //     { name: "Groudon EX 150/160 XY Primal Clash", price: 44.99, category: "singles", series: "xy", image: "images/groudon.webp", description: "Groudon EX 150/160 XY Primal Clash" },
+        //     { name: "Rayquaza VMax 218/203 Sword and Shield Evolving Skies", price: 524.99, category: "singles", series: "sword-shield", image: "images/rayquaza.jpg", description: "Rayquaza VMax 218/203 Sword and Shield Evolving Skies" },
+        //     { name: "Ho-Oh GX 21/147 Ultra Rare Burning Shadows", price: 18.99, category: "singles", series: "sun-moon", image: "images/hoo.jpg", description: "Ho-Oh GX 21/147 Ultra Rare Burning Shadows" },
+        //     { name: "Trainer's Toolkit Box 2022", price: 39.99, category: "sealed", series: "sword-shield", image: "images/toolkit.jpg", description: "Trainer's Toolkit Box 2022" }
+        // ];
 
         const productGrid = document.getElementById('product-grid');
 
@@ -141,12 +367,14 @@
             productDiv.setAttribute('data-name', product.name); // Set data-name for filtering
             productDiv.setAttribute('data-price', product.price); // Set data-price for price filtering
             productDiv.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.description || product.name}</h3>
-                <p>$${product.price.toFixed(2)}</p>
-                <a href="product_detail.html?name=${encodeURIComponent(product.name)}&price=${product.price}">View Details</a>`;
+        <a href="product_detail.html?name=${encodeURIComponent(product.name)}&price=${product.price}">
+            <img src="${product.image}" alt="${product.name}">
+        </a>
+        <h3>${product.description || product.name}</h3>
+        <p>$${product.price.toFixed(2)}</p>`;
             productGrid.appendChild(productDiv);
         });
+
 
 
         function filterProducts() {
