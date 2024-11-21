@@ -101,6 +101,20 @@
     </section>
 
     <script>
+        // function addToCart(product) {
+        //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     let existingProduct = cart.find(item => item.name === product.name);
+
+        //     if (existingProduct) {
+        //         existingProduct.quantity += 1;
+        //     } else {
+        //         cart.push({ name: product.name, price: product.price, quantity: 1 });
+        //     }
+
+        //     localStorage.setItem('cart', JSON.stringify(cart));
+        //     alert(`${product.name} added to cart!`);
+        // }
+
         function loadCart() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let cartTableBody = document.getElementById('cart-items');
@@ -139,9 +153,9 @@
             loadCart();
         }
 
-        window.onload = loadCart;
-
         window.onload = function () {
+            loadCart();
+
             // Get search query from URL
             const urlParams = new URLSearchParams(window.location.search);
             const searchQuery = urlParams.get('search');

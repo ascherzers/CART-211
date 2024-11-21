@@ -188,8 +188,6 @@
             alert("Thank you for your purchase!");
         });
 
-        window.onload = loadCart; // Load cart items on page load
-
         function filterProducts() {
             const searchInput = document.getElementById('search-input').value.toLowerCase();
             const products = document.querySelectorAll('.product');
@@ -204,6 +202,7 @@
             });
         }
         window.onload = function () {
+            loadCart();
             // Get search query from URL
             const urlParams = new URLSearchParams(window.location.search);
             const searchQuery = urlParams.get('search');
