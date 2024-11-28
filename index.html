@@ -7,7 +7,6 @@
     <title>AJ Packs - Home</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
-    <!-- Google Fonts for styling -->
     <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&family=Comic+Neue:wght@700&display=swap"
         rel="stylesheet">
 </head>
@@ -19,10 +18,7 @@
             <h1>AJ Packs</h1>
         </div>
         <div class="search-bar-container">
-            <!-- Search form that submits queries to the Products page -->
             <form action="products.html" method="get">
-                <!-- 'onkeyup' triggers the filterProducts() function to dynamically filter results -->
-
                 <input type="text" id="search-input" name="search" placeholder="Search AJ Packs..."
                     onkeyup="filterProducts()" />
                 <button type="submit">Search</button>
@@ -49,7 +45,6 @@
     <section class="featured-products" id="featured-products">
         <h2 class="section-title">Popular Products</h2>
         <div class="slideshow-container" id="slideshow-container">
-            <!-- Arrow buttons for navigation -->
             <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
             <div class="product-slide">
                 <div class="product-image">
@@ -62,7 +57,6 @@
                     <br>
                     <p id="product-description"></p>
                     <br><br><br>
-                    <!-- Dynamic 'Buy Now' button redirects to the product's detailed page -->
                     <button id="buy-now-btn" class="buy-now-btn">Buy Now!</button>
                 </div>
             </div>
@@ -116,7 +110,6 @@
     <section id="reviews-section" class="reviews-section">
         <h2 align="center">Customer Reviews</h2>
         <div id="reviews-container">
-            <!-- Static reviews -->
             <h3 style="font-family: Arial" align="center">Johnny Laurin ⭐⭐⭐⭐⭐ </h3>
             <p style="font-family: Arial" align="center">Amazing product quality and fast shipping! Will
                 definitely buy again.</p>
@@ -202,7 +195,6 @@
 
         let currentSlide = 0;
 
-        // Updates the slideshow content dynamically based on 'currentSlide'
         function updateSlide() {
             const product = featuredProducts[currentSlide];
             document.getElementById("product-img").src = product.image;
@@ -210,37 +202,71 @@
             document.getElementById("product-price").textContent = `$${product.price.toFixed(2)}`;
             document.getElementById("product-description").textContent = product.description || "No description available.";
 
-            // Redirect the 'Buy Now' button to the product detail page
+            // Update the Buy Now button to redirect to the product detail page
             const buyNowBtn = document.getElementById('buy-now-btn');
             buyNowBtn.onclick = function () {
-                window.location.href = product.url;
+                window.location.href = product.url; // Redirects to the product detail page using the correct URL
             };
         }
 
-        // Handles navigation through the slideshow
         function changeSlide(direction) {
             currentSlide = (currentSlide + direction + featuredProducts.length) % featuredProducts.length;
             updateSlide();
         }
 
-        // Initialize the slideshow when the page loads
+        // Initialize the slideshow
         updateSlide();
 
-        // Filters products in the 'New Arrivals' section based on user input
+        const newArrivalsContainer = document.querySelector('.new-arrivals-container');
+        newArrivals.forEach(product => {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            card.innerHTML = `
+        <a href="${product.link}">
+            <img src="${product.image}" alt="${product.name}">
+        </a>
+        <h3>${product.name}</h3>
+        <p class="price">$${product.price.toFixed(2)}</p>
+    `;
+            newArrivalsContainer.appendChild(card);
+        });
+
+
         function filterProducts() {
             const searchInput = document.getElementById('search-input').value.toLowerCase();
             const products = document.querySelectorAll('.product');
 
             products.forEach(product => {
                 const productName = product.querySelector('h3').textContent.toLowerCase();
-                product.style.display = productName.includes(searchInput) ? 'block' : 'none';
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
             });
         }
 
-        // Renders a dynamic list of products based on a provided array
+        window.onload = function () {
+            // Get search query from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+
+            if (searchQuery) {
+                // Filter products based on search query
+                const filteredProducts = featuredProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+
+                displayProducts(filteredProducts);
+            } else {
+                // Display all products if no search query
+                displayProducts(featuredProducts);
+            }
+        };
+
         function displayProducts(products) {
             const newArrivalsContainer = document.querySelector('.new-arrivals-container');
-            newArrivalsContainer.innerHTML = ''; // Clear existing content
+            newArrivalsContainer.innerHTML = ''; // Clear any existing products
 
             products.forEach(product => {
                 const card = document.createElement('div');
@@ -255,21 +281,6 @@
                 newArrivalsContainer.appendChild(card);
             });
         }
-
-        window.onload = function () {
-            // Check if there's a search query in the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('search');
-
-            if (searchQuery) {
-                const filteredProducts = featuredProducts.filter(product =>
-                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-                );
-                displayProducts(filteredProducts);
-            } else {
-                displayProducts(featuredProducts);
-            }
-        };
     </script>
 </body>
 
