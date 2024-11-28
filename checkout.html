@@ -43,23 +43,25 @@
 
         /* Style for table and product names */
         table {
-            width: 90%;
+            width: 100%;
             border-collapse: collapse;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        th,
-        td {
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: center;
-            padding: 10px;
         }
 
-        td:first-child {
-            text-align: left;
-            /* Align the product name to the left */
-            padding-right: 20px;
-            /* Add space to the right side */
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        table td input[type="number"] {
+            width: 50px;
+            text-align: center;
         }
 
         /* Additional form styles for uniformity */

@@ -9,36 +9,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&display=swap" rel="stylesheet">
     <style>
         .cart {
-            text-align: center;
-            position: relative;
+            max-width: 85%;
+            margin: 40px auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Styling for buttons */
-        .cart button {
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        table td input[type="number"] {
+            width: 50px;
+            text-align: center;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .cart-actions button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 8px 18px;
-            /* Reduced padding */
-            font-size: 16px;
-            /* Reduced font size */
+            padding: 10px 20px;
+            font-size: 1rem;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 15px;
+            border-radius: 4px;
         }
 
-        /* Center the 'Continue Shopping' button over the 'Your Cart Items' */
-        .continue-shopping {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
+        .cart-actions a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1rem;
         }
 
-        /* Styling for the 'Checkout' button */
-        .checkout-button {
-            width: auto;
+        .cart-actions button:hover,
+        .cart-actions a:hover {
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -69,34 +101,30 @@
     </nav>
 
     <section class="cart">
-        <br><br><br><br><br><br>
+        <!-- <br><br><br><br><br><br> -->
 
-        <!-- 'Continue Shopping' Button placed over 'Your Cart Items' -->
-        <div class="continue-shopping">
-            <button>
-                <h4><a href="products.html" style="color: white; text-decoration: none;">Continue Shopping</a></h4>
-            </button>
-        </div>
 
-        <h2 style="font-size:5vw" ,="text-align: center;">Your Cart Items</h3>
-            <table style="width: 85%; border-collapse: collapse;">
+        <h2>Your Cart Items</h3>
+            <table>
                 <thead>
                     <tr>
-                        <th style="text-align: center;">Product</th>
-                        <th style="text-align: center;">Quantity</th>
-                        <th style="text-align: center;">Price</th>
-                        <th style="text-align: center;">Total</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody id="cart-items"></tbody>
             </table>
 
-            <h3 style="font-size:4vw">Total: <span id="total-price">$0.00</span></h3>
+            <h3 style="text-align: center; margin-top: 20px;">Total: <span id="total-price">$0.00</span></h3>
 
-            <!-- Checkout button -->
-            <button class="checkout-button" onclick="alert('Proceeding to checkout')">
-                <h5><a href="checkout.html" style="color: white; text-decoration: none;">Checkout</a></h5>
-            </button>
+            <div class="cart-actions">
+                <a href="products.html">← Continue Shopping</a>
+                <a href="checkout.html">
+                    <button>Checkout</button>
+                </a>
+            </div>
 
     </section>
 
