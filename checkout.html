@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJ Packs - Checkout</title>
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts: Garamond for headings, Comic Neue for emphasized text -->
     <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&family=Comic+Neue:wght@700&display=swap"
         rel="stylesheet">
     <style>
+        /* Center-aligns the checkout section content */
         .checkout {
             text-align: center;
             position: relative;
         }
 
-        /* Style for the Complete Purchase button */
+        /* Custom styling for the "Complete Purchase" button */
         .checkout button {
             background-color: #4CAF50;
             color: white;
@@ -28,7 +31,7 @@
             max-width: 500px;
         }
 
-        /* Style for the complete Checkout button */
+        /* Styling for smaller "Complete Checkout" buttons */
         .complete-checkout button {
             background-color: #4CAF50;
             color: white;
@@ -41,7 +44,7 @@
             width: auto;
         }
 
-        /* Style for table and product names */
+        /* Basic table styling for cart items */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -54,17 +57,19 @@
             text-align: center;
         }
 
+        /* Distinctive header row styling */
         table th {
             background-color: #f2f2f2;
             font-weight: bold;
         }
 
+        /* Input field styling within table cells */
         table td input[type="number"] {
             width: 50px;
             text-align: center;
         }
 
-        /* Additional form styles for uniformity */
+        /* General form styling for the checkout form */
         #checkout-form label,
         #checkout-form input,
         #checkout-form textarea {
@@ -86,22 +91,22 @@
 </head>
 
 <body>
-    <!-- Brand and Search Bar -->
+    <!-- Header section with logo and search bar -->
     <header class="brand-bar">
         <div class="brand-logo">
             <h1>AJ Packs</h1>
         </div>
         <div class="search-bar-container">
+            <!-- Search form for navigating products -->
             <form action="products.html" method="get">
                 <input type="text" id="search-input" name="search" placeholder="Search AJ Packs..."
                     onkeyup="filterProducts()" />
                 <button type="submit">Search</button>
             </form>
-
         </div>
     </header>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation menu -->
     <nav class="navigation-bar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -111,9 +116,10 @@
         </ul>
     </nav>
 
-    <!-- Checkout Section -->
+    <!-- Main checkout section -->
     <section class="checkout-section">
         <h2 style="text-align: center;">Checkout</h2>
+        <!-- Display a summary of cart items -->
         <div id="checkout-summary">
             <h3 style="text-align: center;">Your Cart Items</h3>
             <table>
@@ -125,51 +131,62 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody id="cart-items"></tbody>
+                <tbody id="cart-items"></tbody> <!-- Populated dynamically with JavaScript -->
             </table>
             <h3 style="text-align: center;">Total Amount: <span id="total-price">$0.00</span></h3>
         </div>
 
+        <!-- Form to collect user details and process checkout -->
         <form id="checkout-form" style="text-align: center;">
+            <!-- User name input -->
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
+            <!-- Email address input -->
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
+            <!-- Shipping address input -->
             <label for="address">Shipping Address:</label>
             <textarea id="address" name="address" required></textarea>
 
+            <!-- Payment information input -->
             <label for="payment">Payment Information:</label>
             <input type="text" id="payment" name="payment" placeholder="Credit Card Number" required>
             <br><br>
 
-            <!-- Complete Purchase Button -->
+            <!-- Button to complete purchase -->
             <div class="complete-checkout">
                 <button type="submit">Complete Purchase</button>
             </div>
 
-            <!-- Cancel Checkout Button -->
+            <!-- Button to cancel checkout -->
             <div class="cancel-checkout">
-                <button><a href="products.html" style="color: black; text-decoration: none;">Cancel
-                        Checkout</a></button>
+                <button>
+                    <a href="products.html" style="color: black; text-decoration: none;">Cancel Checkout</a>
+                </button>
             </div>
         </form>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <p>&copy; 2024 AJ Packs</p>
     </footer>
 
     <script>
+        /**
+         * Load and display cart items from local storage.
+         */
         function loadCart() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve cart from local storage or initialize as empty
             let cartTableBody = document.getElementById('cart-items');
             let totalPrice = 0;
 
+            // Clear existing cart rows
             cartTableBody.innerHTML = '';
 
+            // Populate table with cart data
             cart.forEach(item => {
                 let row = document.createElement('tr');
                 row.innerHTML = `
@@ -182,18 +199,26 @@
                 totalPrice += item.price * item.quantity;
             });
 
+            // Update total price
             document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
         }
 
+        /**
+         * Handle form submission for checkout.
+         */
         document.getElementById('checkout-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
-            alert("Thank you for your purchase!");
+            event.preventDefault(); // Prevent page reload
+            alert("Thank you for your purchase!"); // Display confirmation message
         });
 
+        /**
+         * Filter products based on the search query.
+         */
         function filterProducts() {
             const searchInput = document.getElementById('search-input').value.toLowerCase();
-            const products = document.querySelectorAll('.product');
+            const products = document.querySelectorAll('.product'); // Select product elements (if available)
 
+            // Show or hide products based on query match
             products.forEach(product => {
                 const productName = product.querySelector('h3').textContent.toLowerCase();
                 if (productName.includes(searchInput)) {
@@ -203,29 +228,36 @@
                 }
             });
         }
+
+        /**
+         * Initialize cart and search functionality on page load.
+         */
         window.onload = function () {
-            loadCart();
-            // Get search query from URL
+            loadCart(); // Load cart data into table
+
+            // Check for search query in URL
             const urlParams = new URLSearchParams(window.location.search);
             const searchQuery = urlParams.get('search');
 
             if (searchQuery) {
-                // Filter products based on search query
                 const filteredProducts = featuredProducts.filter(product =>
                     product.name.toLowerCase().includes(searchQuery.toLowerCase())
                 );
-
                 displayProducts(filteredProducts);
             } else {
-                // Display all products if no search query
-                displayProducts(featuredProducts);
+                displayProducts(featuredProducts); // Display all products by default
             }
         };
 
+        /**
+         * Display a list of products dynamically.
+         * @param {Array} products - List of products to display
+         */
         function displayProducts(products) {
             const newArrivalsContainer = document.querySelector('.new-arrivals-container');
-            newArrivalsContainer.innerHTML = ''; // Clear any existing products
+            newArrivalsContainer.innerHTML = ''; // Clear existing product cards
 
+            // Create and append product cards
             products.forEach(product => {
                 const card = document.createElement('div');
                 card.classList.add('product-card');
